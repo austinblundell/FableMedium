@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NBA Showdown 3D</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23c9541e'/%3E%3Cpath d='M1 8h14M8 1v14' stroke='%23222' stroke-width='1' fill='none'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- main menu -->
+  <div id="menu" class="overlay">
+    <div class="panel">
+      <h1>NBA <span>SHOWDOWN</span> 3D</h1>
+      <p class="tagline">Full-court 5-on-5 arcade basketball</p>
+
+      <div class="settings">
+        <label>Your Team
+          <select id="sel-home"></select>
+        </label>
+        <label>Opponent
+          <select id="sel-away"></select>
+        </label>
+        <label>Difficulty
+          <select id="sel-diff">
+            <option value="rookie">Rookie</option>
+            <option value="pro" selected>Pro</option>
+            <option value="allstar">All-Star</option>
+          </select>
+        </label>
+        <label>Quarter Length
+          <select id="sel-qlen">
+            <option value="120">2 minutes</option>
+            <option value="180" selected>3 minutes</option>
+            <option value="300">5 minutes</option>
+          </select>
+        </label>
+      </div>
+
+      <button id="btn-play">TIP OFF</button>
+
+      <div class="controls-help">
+        <div><kbd>W A S D</kbd> move</div>
+        <div><kbd>Shift</kbd> sprint</div>
+        <div><kbd>Space</kbd> hold &amp; release to shoot (green = perfect) / jump on defense</div>
+        <div><kbd>E</kbd> pass / switch defender</div>
+        <div><kbd>Q</kbd> steal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- in-game HUD -->
+  <div id="hud" class="hidden">
+    <div id="scoreboard">
+      <div class="team"><span id="hud-home-abbr" class="abbr">LAL</span><span id="hud-home-score" class="score">0</span></div>
+      <div class="mid">
+        <span id="hud-quarter">Q1</span>
+        <span id="hud-clock">3:00</span>
+        <span id="hud-shot" class="shot">24</span>
+      </div>
+      <div class="team"><span id="hud-away-score" class="score">0</span><span id="hud-away-abbr" class="abbr">BOS</span></div>
+    </div>
+    <div id="hint">WASD move · SPACE shoot/jump · E pass/switch · Q steal · SHIFT sprint</div>
+  </div>
+
+  <!-- shot meter -->
+  <div id="meter" class="hidden"><div id="meter-fill"></div><div id="meter-sweet"></div></div>
+
+  <!-- announcement banner -->
+  <div id="banner" class="hidden"></div>
+
+  <!-- game over -->
+  <div id="gameover" class="overlay hidden">
+    <div class="panel">
+      <div id="go-text"></div>
+      <button id="btn-again">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
